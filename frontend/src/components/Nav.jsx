@@ -4,9 +4,19 @@ import { useAuth } from "../Providers/AuthProvider";
 
 
 export default function Nav() {
-    const {currentUser} = useAuth()
+    const {currentUser, logout} = useAuth()
 
     console.log(currentUser)
+
+    async function handleLogout() {
+        console.log("Logging out...");
+
+        await logout();
+    }
+
+        console.log(currentUser)
+
+    if(!currentUser){
     return (
         <nav className="main-nav">
             <div className="nav-container">
@@ -27,4 +37,31 @@ export default function Nav() {
             </div>
         </nav>
     )
+}
+
+if(currentUser){
+        return (
+        <nav className="main-nav">
+            <div className="nav-container">
+                {currentUser ? <img src={currentUser.image_url} alt="" /> : null}
+                <Link to="/" className="nav-logo">
+                    Accueil
+                </Link>
+
+                <div className="nav-links">
+
+                    <button onClick={() => handleLogout()}>
+                        <p>Logout</p>
+                    </button>
+                    
+                    
+
+                    <Link to="/profile" className="nav-link">
+                        Profile
+                    </Link>
+                </div>
+            </div>
+        </nav>
+    )
+}
 }

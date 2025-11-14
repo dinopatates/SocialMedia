@@ -1,5 +1,7 @@
-import React from "react";
+import React, { use } from "react";
 import { useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
+import { useAuth } from "../Providers/AuthProvider";
 
 const api_url = import.meta.env.VITE_API_URL;
 
@@ -15,38 +17,21 @@ export default function LoginForm(e) {
     password: null
   });
 
+    const {login} = useAuth()
+
+  const navigate = useNavigate();
+
   async function handleSubmit(e) {
     e.preventDefault();
 
     try {
       console.log("login submit");
-      const response = await fetch(`${api_url}/api/auth/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": 'application/json',
-        },
-        body: JSON.stringify({
+     await login({
           email: formData['email'],
           password: formData['password']
-        }),
-      });
+        })
 
-            if(response.status === 400) {
-        throw new Error("* Champs emails et mot de passe obligatoires");
-      }
-
-      if(response.status === 401) {
-        throw new Error("Email ou mot de passe incorrecte");
-      }
-
-      if(response.status === 500) {
-        throw new Error("Erreur serveur : réessayez plus tard");
-      }
-
-      const data = await response.json();
-      const token = data.token;
-      localStorage.setItem('token', token);
-
+      navigate('/');
     } catch (error) {
       setDisplayError(error.message)
     }
@@ -62,7 +47,20 @@ export default function LoginForm(e) {
 
             setFormValidationError({...formValidationError, "email": errorMessage})
             setIsFormValid(false)
+            return
         }
+        setIsFormValid(true)
+    }
+
+        if(inputName == "password") {
+        if(inputName.length < 2) {
+            const errorMessage = "Mot de passe trop court."
+
+            setFormValidationError({...formValidationError, "email": errorMessage})
+            setIsFormValid(false)
+            return
+        }
+        setIsFormValid(true)
     }
 
     setFormData({
@@ -71,11 +69,8 @@ export default function LoginForm(e) {
 
     console.log(inputName + ': ', inputValue);
 
-  
-console.log(formData)
   }
 
-console.log(displayError)
   return (
     <div className="login-container">
       <form className="login-form" onSubmit={handleSubmit}>
@@ -99,7 +94,7 @@ console.log(displayError)
 
         <button className={!isFormValid ? "disabled" : ""} disabled={!isFormValid} type="submit">Se connecter</button>
 
-        {displayError ? <div>{displayError}</div> : null}
+        {/* {displayError ? <div>{displayError}</div> : null} */}
       </form>
     </div>
   );
