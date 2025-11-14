@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Post from "./Post";
 
+const api_url = import.meta.env.VITE_API_URL;
+
 export default function PostList() {
   const [posts, setPosts] = useState([]);
 

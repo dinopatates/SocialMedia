@@ -4,6 +4,8 @@ import CommentList from "./CommentList";
 import CommentForm from "./CommentForm";
 import { Link } from "react-router-dom";
 
+const api_url = import.meta.env.VITE_API_URL;
+
 export default function Post({ id, author, author_image_url, image_url, content, likes, comments }) {
   const [likeCount, setLikeCount] = useState(likes);
 

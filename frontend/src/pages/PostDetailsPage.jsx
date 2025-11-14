@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 
+const api_url = import.meta.env.VITE_API_URL;
+
 export default function PostDetailsPage() {
     
 
