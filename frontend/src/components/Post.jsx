@@ -11,7 +11,7 @@ export default function Post({ id, author, author_image_url, image_url, content,
     console.log("clicked");
     const token = localStorage.getItem('token');
     try {
-      const response = await fetch(`http://localhost:3000/api/posts/${id}/like`, {
+      const response = await fetch(`${api_url}/api/posts/${id}/like`, {
         method: "PUT",
         headers: {
               Authorization: `Bearer ${token}`,

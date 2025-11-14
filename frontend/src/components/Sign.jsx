@@ -12,7 +12,7 @@ export default function SignInForm() {
 
     try {
       console.log("form submitted");
-      const response = await fetch("http://localhost:3000/api/auth/register", {
+      const response = await fetch("${api_url}/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

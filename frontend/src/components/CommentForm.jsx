@@ -9,7 +9,7 @@ export default function CommentForm({ post_id }) {
     const token = localStorage.getItem('token')
 
     try {
-      const response = fetch(`http://localhost:3000/api/posts/${post_id}/comments`, {
+      const response = fetch(`${api_url}/api/posts/${post_id}/comments`, {
         method: "POST",
         headers : {
             "Content-type": "application/json",

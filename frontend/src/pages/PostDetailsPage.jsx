@@ -14,7 +14,7 @@ export default function PostDetailsPage() {
   useEffect(() => {
     async function fetchPostDetails() {
       try {
-        const response = await fetch(`http://localhost:3000/api/posts/${id}`, {
+        const response = await fetch(`${api_url}/api/posts/${id}`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,

@@ -9,7 +9,7 @@ export default function PostList() {
   useEffect(() => {
     async function fetchPosts() {
       try {
-        const response = await fetch("http://localhost:3000/api/posts", {
+        const response = await fetch(`${api_url}/api/posts`, {
           method: "GET",
           headers: {
             "Authorisation": `Bearer ${token}`
