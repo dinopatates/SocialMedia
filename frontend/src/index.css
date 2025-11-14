@@ -1,0 +1,705 @@
+/* === Variables CSS === */
+:root {
+  --color-primary: #6366f1;
+  --color-primary-hover: #818cf8;
+  --color-secondary: #8b5cf6;
+  --color-secondary-hover: #a78bfa;
+  --color-text-dark: #0f172a;
+  --color-text-medium: #374151;
+  --color-text-light: #64748b;
+  --color-bg-main: #f5f5f5;
+  --color-bg-light: #f8fafc;
+  --color-bg-white: #ffffff;
+  --color-border-light: #e5e7eb;
+  --color-input-bg: #f1f5f9;
+  --shadow-sm: 0 2px 8px rgba(30, 41, 59, 0.06);
+  --shadow-md: 0 6px 20px rgba(2, 6, 23, 0.06);
+  --shadow-lg: 0 8px 32px rgba(30, 41, 59, 0.10);
+  --shadow-button: 0 6px 18px rgba(99, 102, 241, 0.12);
+  --shadow-button-hover: 0 12px 30px rgba(99, 102, 241, 0.14);
+  --radius-sm: 7px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-full: 999px;
+  --transition-fast: 0.12s ease;
+  --transition-normal: 0.18s ease;
+  --transition-slow: 0.25s ease;
+}
+
+/* === Base === */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background-color: var(--color-bg-main);
+  color: var(--color-text-dark);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* === Navigation === */
+.main-nav {
+  background: var(--color-bg-white);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-logo {
+  font-size: 1.35rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-decoration: none;
+  transition: transform var(--transition-fast);
+  letter-spacing: -0.02em;
+}
+
+.nav-logo:hover {
+  transform: scale(1.05);
+}
+
+.nav-links {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.nav-link {
+  color: var(--color-text-light);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.625rem 1rem;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-normal);
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0.25rem;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  transform: translateX(-50%);
+  transition: width var(--transition-normal);
+}
+
+.nav-link:hover {
+  color: var(--color-primary);
+  background: rgba(99, 102, 241, 0.05);
+}
+
+.nav-link:hover::after {
+  width: 80%;
+}
+
+.nav-container > img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-bg-light);
+  box-shadow: var(--shadow-md);
+  flex-shrink: 0;
+  background-color: var(--color-bg-white);
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.nav-container > img:hover {
+  transform: translateY(-2px) scale(1.06);
+  box-shadow: 0 10px 26px rgba(99, 102, 241, 0.15);
+  border-color: var(--color-primary);
+}
+
+/* === Login & Sign === */
+.login-container {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+  padding: 2rem 1rem;
+}
+
+.login-form {
+  background: var(--color-bg-white);
+  padding: 2.5rem 2rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  min-width: 360px;
+  max-width: 90vw;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(99, 102, 241, 0.08);
+}
+
+.login-form h2 {
+  margin: 0 0 0.5rem 0;
+  color: var(--color-text-dark);
+  font-size: 1.75rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+  padding: 0.875rem 1rem;
+  border: 2px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  background: var(--color-input-bg);
+  transition: all var(--transition-normal);
+  font-family: inherit;
+}
+
+.login-form input:focus {
+  border-color: var(--color-primary);
+  outline: none;
+  background: var(--color-bg-white);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.08);
+  transform: translateY(-1px);
+}
+
+.login-form input::placeholder {
+  color: var(--color-text-light);
+  opacity: 0.6;
+}
+
+.login-form button {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  color: var(--color-bg-white);
+  border: none;
+  padding: 0.875rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  margin-top: 0.5rem;
+  box-shadow: var(--shadow-button);
+  position: relative;
+  overflow: hidden;
+}
+
+.login-form button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.login-form button:hover::before {
+  left: 100%;
+}
+
+.login-form button:hover {
+  background: linear-gradient(135deg, var(--color-primary-hover) 0%, var(--color-secondary-hover) 100%);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-button-hover);
+}
+
+.login-form button:active {
+  transform: translateY(0);
+}
+
+/* override pour bouton désactivé dans le formulaire */
+.login-form button.disabled,
+.login-form button[disabled],
+.login-form button:disabled {
+  background: #e5e7eb;
+  color: #9ca3af;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+  pointer-events: none;
+  opacity: 0.95;
+}
+
+/* si tu veux aussi supprimer l'effet de surbrillance pseudo-élément */
+.login-form button.disabled::before,
+.login-form button[disabled]::before,
+.login-form button:disabled::before {
+  display: none;
+}
+
+.disabled {
+  background-color: #e5e7eb;
+}
+
+/* === Post List === */
+.post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* === Post Card === */
+.post-card {
+  width: 100%;
+  padding: 1.75rem;
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-white);
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  box-shadow: var(--shadow-md);
+  font-family: inherit;
+  color: var(--color-text-dark);
+  transition: all var(--transition-normal);
+}
+
+.post-card:hover {
+  box-shadow: 0 10px 32px rgba(2, 6, 23, 0.1);
+  transform: translateY(-2px);
+  border-color: rgba(99, 102, 241, 0.1);
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.post-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  flex: 1;
+}
+
+.post-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 3px solid rgba(99, 102, 241, 0.08);
+  box-shadow: var(--shadow-md);
+  background: linear-gradient(135deg, #f3f4ff, #eef2ff);
+  transition: transform var(--transition-fast);
+}
+
+.post-avatar:hover {
+  transform: scale(1.08) rotate(3deg);
+}
+
+.post-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.post-author {
+  margin: 0;
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  letter-spacing: -0.01em;
+}
+
+.post-date {
+  font-size: 0.875rem;
+  color: var(--color-text-light);
+  font-weight: 400;
+}
+
+.post-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.like-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  color: var(--color-bg-white);
+  border: none;
+  padding: 0.625rem 1.125rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.9rem;
+  box-shadow: var(--shadow-button);
+  transition: all var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.like-btn::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.4s;
+}
+
+.like-btn:hover::before {
+  transform: translate(-50%, -50%) scale(2);
+}
+
+.like-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: var(--shadow-button-hover);
+}
+
+.like-btn:active {
+  transform: translateY(-1px) scale(1.02);
+}
+
+.like-count {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.125rem 0.625rem;
+  border-radius: var(--radius-full);
+  font-weight: 800;
+  font-size: 0.875rem;
+  min-width: 24px;
+  text-align: center;
+}
+
+.post-content {
+  margin: 1rem 0;
+  color: var(--color-text-medium);
+  line-height: 1.7;
+  font-size: 1.02rem;
+}
+
+.post-media {
+  margin: 1rem 0;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: var(--color-bg-light);
+  position: relative;
+}
+
+.post-image {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--transition-slow);
+}
+
+.post-media:hover .post-image {
+  transform: scale(1.05);
+}
+
+.post-footer {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.post-link {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  transition: all var(--transition-fast);
+}
+
+.post-link:hover {
+  color: var(--color-secondary);
+  gap: 0.625rem;
+}
+
+/* === Comment Form === */
+.comment-form-container {
+  margin-top: 1.25rem;
+  background: var(--color-bg-light);
+  padding: 1.25rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(99, 102, 241, 0.06);
+}
+
+.comment-form-container h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.comment-form input[type="text"] {
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--color-border-light);
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  background: var(--color-bg-white);
+  transition: all var(--transition-normal);
+  font-family: inherit;
+}
+
+.comment-form input:focus {
+  border-color: var(--color-primary);
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.08);
+}
+
+.comment-form button {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: var(--color-bg-white);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-button);
+}
+
+.comment-form button:hover {
+  background: linear-gradient(135deg, var(--color-primary-hover), var(--color-secondary-hover));
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-button-hover);
+}
+
+/* === Comment List === */
+.comment-list {
+  margin: 1.25rem 0 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.comment-row {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1rem;
+  background: var(--color-bg-white);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-normal);
+}
+
+.comment-row:hover {
+  background: rgba(99, 102, 241, 0.02);
+  transform: translateX(4px);
+}
+
+.comment-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 2px solid rgba(99, 102, 241, 0.08);
+  box-shadow: var(--shadow-sm);
+  background: linear-gradient(135deg, #eef2ff, #f3f4ff);
+}
+
+/* === Loader === */
+.loader-container {
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1.5rem;
+}
+
+.loader {
+  width: 80px;
+  height: 80px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.loader div {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  border: 4px solid var(--color-primary);
+  border-radius: 50%;
+  animation: ripple 1.2s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  opacity: 0.8;
+}
+
+.loader div:nth-child(2) {
+  animation-delay: -0.5s;
+  border-color: var(--color-secondary);
+}
+
+@keyframes ripple {
+  0% {
+    top: 32px;
+    left: 32px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 0;
+    left: 0;
+    width: 64px;
+    height: 64px;
+    opacity: 0;
+  }
+}
+
+.loading-text {
+  color: var(--color-text-dark);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.dots {
+  display: inline-block;
+  width: 30px;
+  text-align: left;
+}
+
+.dots::after {
+  content: '';
+  animation: dots 1.5s steps(4, end) infinite;
+}
+
+@keyframes dots {
+  0%, 20% { content: ''; }
+  40% { content: '.'; }
+  60% { content: '..'; }
+  80%, 100% { content: '...'; }
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 0.875rem 1rem;
+  }
+  
+  .nav-links {
+    gap: 0.375rem;
+  }
+  
+  .nav-link {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+  }
+  
+  .nav-container > img {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .login-form {
+    padding: 2rem 1.5rem;
+    min-width: unset;
+  }
+  
+  .post-list {
+    gap: 1.5rem;
+    padding: 1.5rem 0.75rem;
+  }
+  
+  .post-card {
+    padding: 1.25rem;
+  }
+  
+  .post-avatar {
+    width: 44px;
+    height: 44px;
+    border-width: 2px;
+  }
+  
+  .post-image {
+    height: 220px;
+  }
+  
+  .like-btn {
+    padding: 0.5rem 0.875rem;
+    font-size: 0.85rem;
+  }
+  
+  .comment-avatar {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-logo {
+    font-size: 1.15rem;
+  }
+  
+  .post-header {
+    flex-wrap: wrap;
+  }
+  
+  .post-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+  
+  .post-image {
+    height: 180px;
+  }
+}
+
