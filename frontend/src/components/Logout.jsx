@@ -1,7 +1,4 @@
 import React from "react";
-import { useAuth} from "../Providers/AuthProvider";
+import { useAuth } from "../Providers/AuthProvider";
 
-export default function Logout() {
-
-
-}
+export default function Logout() {}

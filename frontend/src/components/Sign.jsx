@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
+import { Helmet } from "react-helmet";
 
 const api_url = import.meta.env.VITE_API_URL;
 
@@ -44,31 +45,42 @@ export default function SignInForm() {
   }
 
   return (
-    <div className="login-container">
-      <form className="login-form" onSubmit={handleSubmit}>
-        <input
-          onChange={handleFormChange}
-          type="text"
-          placeholder="Username"
-          name="username"
-          autoComplete="username"
-        />
-        <input
-          onChange={handleFormChange}
-          type="text"
-          placeholder="Email"
-          name="email"
-          autoComplete="email"
-        />
-        <input
-          onChange={handleFormChange}
-          type="password"
-          placeholder="Password"
-          name="password"
-          autoComplete="new-password"
-        />
-        <button type="submit">S'inscrire</button>
-      </form>
-    </div>
+    <Suspense>
+
+           <Helmet>
+              <title>Inscription</title>
+              <meta
+                name="description"
+                content="Inscription"
+              />
+            </Helmet>
+
+      <div className="login-container">
+        <form className="login-form" onSubmit={handleSubmit}>
+          <input
+            onChange={handleFormChange}
+            type="text"
+            placeholder="Username"
+            name="username"
+            autoComplete="username"
+          />
+          <input
+            onChange={handleFormChange}
+            type="text"
+            placeholder="Email"
+            name="email"
+            autoComplete="email"
+          />
+          <input
+            onChange={handleFormChange}
+            type="password"
+            placeholder="Password"
+            name="password"
+            autoComplete="new-password"
+          />
+          <button type="submit">S'inscrire</button>
+        </form>
+      </div>
+    </Suspense>
   );
 }

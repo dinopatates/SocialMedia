@@ -8,24 +8,24 @@ export default function CommentForm({ post_id }) {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem("token");
 
     try {
       const response = fetch(`${api_url}/api/posts/${post_id}/comments`, {
         method: "POST",
-        headers : {
-            "Content-type": "application/json",
-            Authorization: `Bearer ${token}`,
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-            comment
-        })
+          comment,
+        }),
       });
-        if(!response.ok) {
+      if (!response.ok) {
         throw new Error(`Failed to fetch status: ${response.status}`);
-        }
-        const data = await response.json();
-        console.log(data)
+      }
+      const data = await response.json();
+      console.log(data);
     } catch (error) {
       // ...gestion d'erreur...
     }

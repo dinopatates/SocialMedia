@@ -10,9 +10,9 @@ const api_url = import.meta.env.VITE_API_URL;
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [token, setToken] = useState(true);
 
-  //const token = localStorage.getItem("token");
+
+  const token = localStorage.getItem("token");
   useEffect(() => {
 
     async function validateToken() {
@@ -37,7 +37,6 @@ export function AuthProvider({ children }) {
       }
     }
 
-    console.log(token);
 
     validateToken();
   }, []);
@@ -76,6 +75,8 @@ export function AuthProvider({ children }) {
       const data = await response.json();
       const token = data.token;
 
+      localStorage.setItem("token", token);
+
       if(token) {
          const response = await fetch(`${api_url}/api/auth/me`, {
           headers: {
@@ -100,14 +101,6 @@ export function AuthProvider({ children }) {
     login,
     setCurrentUser,
   };
-
-  if (loading) {
-    return (
-      <AuthContext.Provider value={value}>
-        <Loader />
-      </AuthContext.Provider>
-    );
-  }
 
   console.log(currentUser);
   return (
